@@ -1,0 +1,31 @@
+# Core AI and ML Libraries
+llama-index
+llama-index-core
+llama-index-embeddings-huggingface
+llama-index-llms-cohere
+llama-index-llms-anthropic
+langchain-text-splitters
+phoenix
+openinference-instrumentation-llama-index
+opentelemetry-exporter-otlp-proto-http
+opentelemetry-sdk
+
+# Embedding and Language Models
+sentence-transformers
+transformers
+torch
+huggingface-hub
+
+# Chat and Web Frameworks
+chainlit
+
+# API and HTTP Libraries
+requests
+httpx
+
+# Optional: if you need additional data processing
+pandas
+numpy
+
+# Development and Utility
+python-dotenv

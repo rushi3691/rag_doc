@@ -1,0 +1,52 @@
+entity user {}  
+
+entity super_admin {
+    relation user @user
+    attribute id string
+}
+
+entity organization {
+    relation member @user
+    relation admin @user
+
+    attribute name string
+    attribute id string
+    
+    permission create_role = admin
+}
+
+entity role {
+    relation owner @organization
+    relation assignee @user
+    attribute name string
+    attribute id string
+
+    permission assign = owner.admin
+}
+
+entity file {
+    relation owner @organization
+    relation viewer @user
+    relation editor @user
+    attribute name string
+
+    permission view = viewer or editor or owner.member
+    permission edit = editor or owner.admin
+}
+
+entity global_form {
+    relation owner @organization
+    attribute name string
+    attribute id string
+
+    permission view = owner.member
+    permission edit = owner.admin
+}
+
+rule is_member(org @organization, u @user) {
+    (org.member(?u) || org.admin(?u))
+}
+
+rule can_assign_role(org @organization, u @user) {
+    org.admin(?u)
+}
